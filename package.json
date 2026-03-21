@@ -1,0 +1,34 @@
+{
+  "name": "table-spec-sdk",
+  "version": "1.0.0",
+  "description": "Render table specifications and ERD diagrams as HTML/SVG from ParsedTable JSON",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch"
+  },
+  "keywords": [
+    "table-spec",
+    "erd",
+    "ddl",
+    "sql",
+    "schema"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "tsup": "^8.5.1",
+    "typescript": "^5.9.3"
+  }
+}

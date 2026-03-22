@@ -48,3 +48,50 @@ export const COLORS = {
   erdTitleText: '#0F172A',
   erdSubtitleText: '#64748B',
 } as const;
+
+export const BUILDER_COLORS = {
+  // Backgrounds
+  canvasBg: '#1A202C',
+  nodeBg: '#1E293B',
+  nodeAltBg: '#1A202C',
+  nodeHeaderBg: '#334155',
+  panelBg: '#2D3748',
+
+  // Borders
+  borderColor: '#4A5568',
+
+  // Text
+  primaryText: '#E2E8F0',
+  secondaryText: '#A0AEC0',
+  mutedText: '#718096',
+  dimText: '#64748B',
+
+  // Accent
+  accent: '#4DB8B0',
+
+  // Constraint badges
+  pkBadgeBg: 'rgba(59,130,246,0.25)',
+  pkBadgeText: '#60A5FA',
+  fkBadgeBg: 'rgba(16,185,129,0.25)',
+  fkBadgeText: '#34D399',
+  uqBadgeBg: 'rgba(168,85,247,0.25)',
+  uqBadgeText: '#C084FC',
+  aiBadgeBg: 'rgba(249,115,22,0.25)',
+  aiBadgeText: '#FB923C',
+
+  // Row highlighting
+  pkRowBg: 'rgba(59,130,246,0.08)',
+  fkRowBg: 'rgba(16,185,129,0.08)',
+
+  // FK lines
+  fkLineColor: '#94A3B8',
+  fkArrowColor: '#94A3B8',
+
+  // Grid
+  gridDotColor: 'rgba(74,85,104,0.4)',
+
+  // Table list view
+  listSelectedBg: 'rgba(77,184,176,0.15)',
+  normalRowBg: '#2D3748',
+  alternateRowBg: 'rgba(45,55,72,0.6)',
+} as const;

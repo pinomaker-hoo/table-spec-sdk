@@ -1,6 +1,6 @@
 {
   "name": "table-spec-sdk",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "Render table specifications and ERD diagrams as HTML/SVG from ParsedTable JSON",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",

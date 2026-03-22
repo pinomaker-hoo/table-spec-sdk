@@ -22,6 +22,9 @@
 - **DDL Parsing** — Extracts table/column metadata from `CREATE TABLE` statements
 - **Table Specification** — Renders summary table + column details as HTML
 - **ERD Diagram** — Generates SVG ERD with FK relationships
+- **Builder Canvas** — Dark-themed ERD Builder canvas (grid + nodes + FK lines)
+- **Builder Table View** — Table list + column spreadsheet view
+- **Builder Table Node** — Standalone single table node rendering
 - **Multi-DB Support** — Supports MySQL `COMMENT` and PostgreSQL `COMMENT ON` syntax
 - **Zero Dependencies** — No runtime dependencies
 - **TypeScript** — Full type support
@@ -73,6 +76,40 @@ const tableHtml = renderTableView(tables);
 const erdSvg = renderERD(tables);
 ```
 
+### Builder Views
+
+```typescript
+import {
+  parseDDL,
+  renderBuilderCanvas,
+  renderBuilderTableView,
+  renderBuilderTableNode,
+} from 'table-spec-sdk';
+
+const tables = parseDDL(ddl);
+
+// Builder canvas (grid background + table nodes + FK relationship lines)
+const canvasSvg = renderBuilderCanvas(tables, {
+  title: 'My Database',
+  showGrid: true,
+  displayOptions: {
+    showDataType: true,
+    showConstraints: true,
+    showComment: true,
+  },
+});
+
+// Table list + column spreadsheet
+const tableViewHtml = renderBuilderTableView(tables, {
+  selectedTable: 'users',
+});
+
+// Single table node
+const nodeHtml = renderBuilderTableNode(tables[0], {
+  displayOptions: { showNullable: true, showDefault: true },
+});
+```
+
 ## API
 
 ### `parseDDL(sql: string): ParsedTable[]`
@@ -99,6 +136,46 @@ Renders parsed table data as an SVG ERD diagram.
 |--------|------|---------|-------------|
 | `darkTheme` | `boolean` | `true` | Use dark theme |
 | `maxColumnsShown` | `number` | `15` | Max columns displayed per table |
+
+### `renderBuilderCanvas(tables: ParsedTable[], options?: BuilderCanvasOptions): string`
+
+Renders a dark-themed ERD Builder canvas as SVG, including grid background, table nodes, and FK Bezier curves.
+
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| `displayOptions` | `NodeDisplayOptions` | See below | Column display toggles |
+| `showGrid` | `boolean` | `true` | Show dotted grid background |
+| `title` | `string` | - | Title text above the diagram |
+
+### `renderBuilderTableView(tables: ParsedTable[], options?: BuilderTableViewOptions): string`
+
+Renders a table list (left panel) + column detail spreadsheet (right panel) as HTML.
+
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| `selectedTable` | `string` | First table | Table name to highlight and display |
+
+### `renderBuilderTableNode(table: ParsedTable, options?: BuilderTableNodeOptions): string`
+
+Renders a single table node as a standalone SVG.
+
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| `displayOptions` | `NodeDisplayOptions` | See below | Column display toggles |
+
+### `NodeDisplayOptions`
+
+Column display options used by Builder functions.
+
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| `showDataType` | `boolean` | `true` | Show data type |
+| `showConstraints` | `boolean` | `true` | Show PK/FK badges |
+| `showNullable` | `boolean` | `false` | Show NULL/NOT NULL |
+| `showDefault` | `boolean` | `false` | Show default value |
+| `showComment` | `boolean` | `false` | Show column comment |
+| `showUnique` | `boolean` | `false` | Show UNIQUE badge |
+| `showAutoIncrement` | `boolean` | `false` | Show AUTO_INCREMENT badge |
 
 ## Types
 
